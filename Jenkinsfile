@@ -25,6 +25,12 @@ pipeline{
             }
             
         }
+        stage('Create Docker Image'){
+            steps{
+                sh 'docker build -t priyanka/Healthcare:1.0 .'
+                echo 'This stage will create docker image'
+            }
+        }
       
     }
 }
