@@ -27,7 +27,7 @@ pipeline{
         }
         stage('Create Docker Image'){
             steps{
-                sh 'docker build -t priyanka/healthcare:1.0 .'
+                sh 'docker build -t kparvat03/healthcare:1.0 .'
                 echo 'This stage will create docker image'
             }
         }
@@ -42,7 +42,7 @@ pipeline{
        }
         stage("Docker Push-Image"){
             steps {
-                sh 'docker push priyanka/healthcare:1.0'
+                sh 'docker push kparvat03/healthcare:1.0'
                 echo 'This stage will pus the new image to the dockerhub'
             }
         }
