@@ -27,10 +27,27 @@ pipeline{
         }
         stage('Create Docker Image'){
             steps{
-                sh 'docker build -t priyanka/Healthcare:1.0 .'
+                sh 'docker build -t priyanka/healthcare:1.0 .'
                 echo 'This stage will create docker image'
             }
         }
+
+       stage('Login to Docker'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'Dockerlogin', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
+                sh 'docker login -u ${Dockerlogin} -p ${docker-pass}'
+                echo 'This stage will login to Dockerhub'
+                   }
+                }
+       }
+        stage("Docker Push-Image"){
+            steps {
+                sh 'docker push priyanka/healthcare:1.0'
+                echo 'This stage will pus the new image to the dockerhub'
+            }
+        }
+
+        
       
     }
 }
